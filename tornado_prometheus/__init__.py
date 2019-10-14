@@ -1,6 +1,6 @@
 from tornado.web import RequestHandler
 from prometheus_client import Histogram, Counter, REGISTRY
-from prometheus_client.exposition import generate_latest, choose_encoder
+from prometheus_client.exposition import choose_encoder
 
 BUCKETS = (0.01, 0.05, 0.1, 0.5, 0.75, 1.0, 2.5, 5.0, 7.5, 10.0, 15.0, 20.0, 30.0)
 

@@ -1,0 +1,6 @@
+[run]
+omit =
+    *tests.py
+branch = True
+source =
+    tornado_prometheus

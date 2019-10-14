@@ -2,12 +2,17 @@
 
 from setuptools import setup, find_packages
 
+tests_require = [
+    'nose',
+    'coverage',
+    'flake8',
+]
 
 setup(
     name='tornado-prometheus',
     version='0.1.0',
     description="HTTP metrics for a tornado application",
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
     keywords='prometheus tornado',
     author=u'Globo.com',
     author_email='backstage@corp.globo.com',
@@ -33,5 +38,9 @@ setup(
     include_package_data=True,
     install_requires=[
         'tornado>=4.0',
+        'prometheus-client==0.7.1',
     ],
+    extras_require={
+        'tests': tests_require,
+    },
 )
