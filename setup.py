@@ -12,7 +12,7 @@ setup(
     name='tornado-prometheus',
     version='0.1.0',
     description="HTTP metrics for a tornado application",
-    long_description=open('README.md').read(),
+    long_description=open('README.rst').read(),
     keywords='prometheus tornado',
     author=u'Globo.com',
     author_email='backstage@corp.globo.com',
