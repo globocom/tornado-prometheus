@@ -21,10 +21,10 @@ class TestIntegration(AsyncHTTPTestCase):
         self.fetch("/")
         response = self.fetch("/metrics")
         self.assertIn(
-            'tornado_http_requests_total{handler="MainHandler",method="GET",status="2xx"} 1.0',
+            b'tornado_http_requests_total{handler="MainHandler",method="GET",status="2xx"} 1.0',
             response.body,
         )
         self.assertIn(
-            'tornado_http_request_duration_seconds_bucket{handler="MainHandler",le="15.0",method="GET"} 1.0',
+            b'tornado_http_request_duration_seconds_bucket{handler="MainHandler",le="15.0",method="GET"} 1.0',
             response.body,
         )
