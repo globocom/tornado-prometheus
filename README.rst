@@ -39,7 +39,7 @@ Usage
 Example output for metric route
 -------------------------------
 
-.. code-block:: openmetrics
+.. code-block::
 
    # HELP tornado_http_request_duration_seconds HTTP request duration in seconds
    # TYPE tornado_http_request_duration_seconds histogram
@@ -57,7 +57,7 @@ Example output for metric route
    tornado_http_request_duration_seconds_bucket{handler="StatusHandler",le="20.0",method="GET"} 2.0
    tornado_http_request_duration_seconds_bucket{handler="StatusHandler",le="30.0",method="GET"} 2.0
    tornado_http_request_duration_seconds_bucket{handler="StatusHandler",le="+Inf",method="GET"} 2.0
-   
+
    # HELP tornado_http_requests_total Total of HTTP requests processed
    # TYPE tornado_http_requests_total counter
    tornado_http_requests_total{handler="StatusHandler",method="GET",status="2xx"} 2.0
