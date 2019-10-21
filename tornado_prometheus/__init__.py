@@ -4,36 +4,33 @@ from prometheus_client.exposition import choose_encoder
 
 BUCKETS = (0.01, 0.05, 0.1, 0.5, 0.75, 1.0, 2.5, 5.0, 7.5, 10.0, 15.0, 20.0, 30.0)
 
+request_time_seconds = Histogram(
+    namespace="tornado",
+    subsystem="http",
+    name="request_duration_seconds",
+    documentation="HTTP request duration in seconds",
+    buckets=BUCKETS,
+    labelnames=("handler", "method"),
+)
+
+requests_total = Counter(
+    namespace="tornado",
+    subsystem="http",
+    name="requests_total",
+    documentation="Total of HTTP requests processed",
+    labelnames=("handler", "method", "status"),
+)
+
 
 class PrometheusMixIn(object):
-    def __init__(self, *args, **kwargs):
-        super(PrometheusMixIn, self).__init__(*args, **kwargs)
-
-        self.request_time_seconds = Histogram(
-            namespace="tornado",
-            subsystem="http",
-            name="request_duration_seconds",
-            documentation="HTTP request duration in seconds",
-            buckets=BUCKETS,
-            labelnames=("handler", "method"),
-        )
-
-        self.requests_total = Counter(
-            namespace="tornado",
-            subsystem="http",
-            name="requests_total",
-            documentation="Total of HTTP requests processed",
-            labelnames=("handler", "method", "status"),
-        )
-
     def observe_request(self, handler):
         handler_name = type(handler).__name__
         method = handler.request.method
         request_time = handler.request.request_time()
         status = handler.get_status()
 
-        self.request_time_seconds.labels(handler_name, method).observe(request_time)
-        self.requests_total.labels(
+        request_time_seconds.labels(handler_name, method).observe(request_time)
+        requests_total.labels(
             handler_name, method, classify_status_code(status)
         ).inc()
 

@@ -4,7 +4,7 @@ clean:
 
 test: clean
 	@coverage run --branch `which nosetests` -vv -s tests/
-	@coverage report -m --fail-under=73
+	@coverage report -m
 	@flake8 tornado_prometheus tests
 
 setup:
