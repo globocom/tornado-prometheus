@@ -10,7 +10,7 @@ tests_require = [
 
 setup(
     name='tornado-prometheus',
-    version='0.1.1',
+    version='0.1.2',
     description="HTTP metrics for a tornado application",
     long_description=open('README.rst').read(),
     keywords='prometheus tornado',
@@ -28,7 +28,10 @@ setup(
         'Operating System :: Unix',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
     packages=find_packages(
         exclude=(
@@ -38,7 +41,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'tornado>=4.0',
-        'prometheus-client==0.7.1',
+        'prometheus-client>=0.7.1,<1.0.0',
     ],
     extras_require={
         'tests': tests_require,
